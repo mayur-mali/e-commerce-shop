@@ -2,17 +2,22 @@ import Navbar from "./components/general/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./components/general/About";
 import AddProduct from "./components/product/AddProduct";
-import Product from "./components/product/Product";
+
 import Checkout from "./components/product/Checkout";
+import Home from "./pages/Home";
+import ProductDetails from "./components/product/ProductDetails";
 function App() {
   return (
-    <div className="App">
+    <div className="App font-Poppins">
       <Router>
         <Navbar />
 
         <Switch>
           <Route path="/" exact>
-            <Product />
+            <Home />
+          </Route>
+          <Route path="/product/:productid" exact>
+            <ProductDetails />
           </Route>
           <Route path="/about">
             <About />
