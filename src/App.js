@@ -1,11 +1,12 @@
 import Navbar from "./components/general/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./components/general/About";
-import AddProduct from "./components/product/AddProduct";
+import AddProduct from "./pages/AddProduct";
 
-import Checkout from "./components/product/Checkout";
+import Checkout from "./pages/Checkout";
 import Home from "./pages/Home";
-import ProductDetails from "./components/product/ProductDetails";
+import ProductDetails from "./pages/ProductDetails";
+import ShoppingCart from "./pages/ShoppingCart";
 function App() {
   return (
     <div className="App font-Poppins">
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/add-product">
             <AddProduct />
+          </Route>
+          <Route path="/cart">
+            <ShoppingCart />
           </Route>
           <Route path="/checkout">
             <Checkout />
