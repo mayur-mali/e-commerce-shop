@@ -7,33 +7,37 @@ import Checkout from "./pages/Checkout";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import ShoppingCart from "./pages/ShoppingCart";
+import { Provider } from "react-redux";
+import store from "./store/store";
 function App() {
   return (
     <div className="App font-Poppins">
-      <Router>
-        <Navbar />
+      <Provider store={store}>
+        <Router>
+          <Navbar />
 
-        <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/product/:productid" exact>
-            <ProductDetails />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/add-product">
-            <AddProduct />
-          </Route>
-          <Route path="/cart">
-            <ShoppingCart />
-          </Route>
-          <Route path="/checkout">
-            <Checkout />
-          </Route>
-        </Switch>
-      </Router>
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/product/:productid" exact>
+              <ProductDetails />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/add-product">
+              <AddProduct />
+            </Route>
+            <Route path="/cart">
+              <ShoppingCart />
+            </Route>
+            <Route path="/checkout">
+              <Checkout />
+            </Route>
+          </Switch>
+        </Router>
+      </Provider>
     </div>
   );
 }
