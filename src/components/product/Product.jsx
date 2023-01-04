@@ -1,9 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
-export default function Product({ id }) {
+import { add } from "../../store/cartSlice";
+export default function Product(props) {
+  const dispatch = useDispatch();
+  const { id, title, description, image, price, category } = props.data;
+  const handleAdd = (product) => {
+    dispatch(add(product));
+  };
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col justify-between">
       <div className="relative rounded-lg h-80 overflow-hidden border p-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -21,31 +27,31 @@ export default function Product({ id }) {
         </svg>
 
         <img
-          src="https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
-          alt="product"
+          src={image}
+          alt={title}
           className="absolute h-full w-full object-contain"
         />
       </div>
-      <div className="space-y-2">
+      <div className="">
         <Link to={`/product/${id}`}>
           <h2 className="font-bold hover:text-yellow-700 h-full line-clamp-2 text-lg">
-            John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain
-            Bracelet
+            {title}
           </h2>
         </Link>
-        <p className="line-clamp-1 text-slate-500 font-bold capitalize">
-          rom our Legends Collection, the Naga was inspired by the mythical
-          water dragon that protects the ocean's pearl. Wear facing inward to be
-          bestowed with love and abundance, or outward for protection.
-        </p>
-        <div className="flex items-center justify-between ">
-          <h4 className="capitalize text-gray-400">jewelery</h4>
-          <p className="font-bold text-lg">At Just $ 458.00 </p>
-        </div>
       </div>
-      <div className="h-10 font-bold rounded-full px-4 border flex justify-center items-center py-2 border-slate-700 hover:bg-blue-600 cursor-pointer hover:text-white">
+      <p className="line-clamp-1 text-slate-500 font-bold capitalize">
+        {description}
+      </p>
+      <div className="flex items-center justify-between ">
+        <h4 className="capitalize text-gray-400">{category}</h4>
+        <p className="font-bold text-lg">At Just $ {price} </p>
+      </div>
+      <button
+        onClick={() => handleAdd(props.data)}
+        className="h-10 font-bold rounded-full px-4 border flex justify-center items-center py-2 border-slate-700 hover:bg-blue-600 cursor-pointer hover:text-white"
+      >
         Add to Cart
-      </div>
+      </button>
     </div>
   );
 }
