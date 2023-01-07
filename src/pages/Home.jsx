@@ -5,10 +5,13 @@ import { axiosInstance } from "../config";
 
 export default function Home() {
   const [product, setProducts] = useState([]);
+  const [sort, setSort] = useState(null);
+
   useEffect(() => {
     //dispatch(fetchProducts());
+
     const fetchProducts = async () => {
-      const res = await axiosInstance.get("/products");
+      const res = await axiosInstance.get("/products?sort=desc");
       setProducts(res.data);
     };
     fetchProducts();
