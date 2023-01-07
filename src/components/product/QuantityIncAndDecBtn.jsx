@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function QuantityIncAndDecBtn() {
+export default function QuantityIncAndDecBtn(props) {
   return (
     <div className="py-2 px-4 w-32 flex justify-between items-center rounded-full bg-slate-100">
       <span>
@@ -15,7 +15,7 @@ export default function QuantityIncAndDecBtn() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
         </svg>
       </span>
-      <span>0</span>
+      <span>{props.price}</span>
       <span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
