@@ -15,7 +15,7 @@ export default function QuantityIncAndDecBtn(props) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
         </svg>
       </span>
-      <span>{props.price}</span>
+      <span>{props.qty}</span>
       <span>
         <svg
           xmlns="http://www.w3.org/2000/svg"

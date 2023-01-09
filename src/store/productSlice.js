@@ -6,6 +6,7 @@ export const STATUSES = Object.freeze({
   ERROR: "error",
   LOADING: "loading",
 });
+
 const productSlice = createSlice({
   name: "product",
   initialState: {
@@ -13,11 +14,52 @@ const productSlice = createSlice({
     status: STATUSES.IDLE,
   },
   reducers: {
-    fetchProduct(state, action) {
+    setProducts(state, action) {
       state.data = action.payload;
+    },
+    setStatus(state, action) {
+      state.status = action.payload;
+    },
+    addProduct(state, action) {
+      const data = action.payload;
+      return { data };
+    },
+    deleteProduct(state, action) {
+      const data = state.data.filter((item) => item.id !== action.payload);
+      return { data };
     },
   },
 });
 
-export const { fetchProduct, remove } = productSlice.actions;
+export const { setProducts, setStatus, deleteProduct, addProduct } =
+  productSlice.actions;
 export default productSlice.reducer;
+
+export function fetchProducts(sort) {
+  return async function fetchProductThunk(dispatch, getState) {
+    dispatch(setStatus(STATUSES.LOADING));
+    try {
+      const res = await axiosInstance.get(`/products?sort=${sort}`);
+      dispatch(setProducts(res.data));
+      dispatch(setStatus(STATUSES.IDLE));
+    } catch (err) {
+      console.log(err);
+      dispatch(setStatus(STATUSES.ERROR));
+    }
+  };
+}
+
+export function addItem(item) {
+  return async function addProductThunk(dispatch, getState) {
+    try {
+      const cart = getState();
+      // console.log(cart.product.data);
+      const res = await axiosInstance.post("/products", item);
+      const products = [...cart.product.data, { ...res.data }];
+      console.log(products);
+      dispatch(addProduct(products));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
