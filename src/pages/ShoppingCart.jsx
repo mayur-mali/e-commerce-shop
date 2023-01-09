@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import EmptyCart from "../components/general/EmptyCart";
 import ShoppingItem from "../components/product/ShoppingItem";
 export default function ShoppingCart() {
@@ -42,9 +43,11 @@ export default function ShoppingCart() {
             </div>
             <span className="font-bold text-lg">$ {price}</span>
           </div>
-          <button className="w-full py-2 px-4 bg-slate-600 text-white rounded-lg hover:bg-slate-700">
-            Checkout
-          </button>
+          <Link to="/checkout">
+            <button className="w-full py-2 px-4 bg-slate-600 text-white rounded-lg hover:bg-slate-700">
+              Checkout
+            </button>
+          </Link>
         </>
       )}
     </div>

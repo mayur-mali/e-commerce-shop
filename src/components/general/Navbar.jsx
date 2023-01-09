@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import AddProduct from "../../pages/AddProduct";
 export default function Navbar() {
   const [show, setShow] = useState(false);
+  const [showAddProduct, setAddProduct] = useState(false);
   const items = useSelector((state) => state.cart);
   return (
-    <div className="bg-slate-900 text-white font-bold text-xl">
+    <div className="bg-slate-900 relative text-white font-bold text-xl">
       <div className="min-h-[4rem] relative h-full px-4 flex items-center justify-between md:space-x-20 max-w-7xl mx-auto">
         <div>
           <Link to="/">Logo</Link>
         </div>
         <div className="space-x-10 h-full hidden md:flex justify-center items-center">
           <Link to="/">Home</Link>
-          <Link to="/add-product">Add Product</Link>
+          <span
+            className="cursor-pointer"
+            onClick={() => setAddProduct(!showAddProduct)}
+          >
+            Add Product
+          </span>
           <Link to="/checkout">Checkout</Link>
-          <Link to="/about">About</Link>
         </div>
         {show && (
           <div className="py-4 space-y-10 w-full h-screen left-0 md:hidden p-4 z-40 bg-slate-900 text-white top-0 flex flex-col text-center absolute">
@@ -84,6 +89,27 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      {showAddProduct && (
+        <div className="fixed h-screen w-full left-0 top-0 z-40 bg-black bg-opacity-50">
+          <span onClick={() => setAddProduct(false)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="float-right w-12 h-12 font-bold pr-4 pt-4 cursor-pointer "
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </span>
+          <AddProduct setAddProduct={setAddProduct} />
+        </div>
+      )}
     </div>
   );
 }
