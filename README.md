@@ -1,6 +1,6 @@
 # E-Commerce React app
 
-In this app we fetch product show on frondend...
+In this app we fetch product show on frontend...
 
 ## Demo
 
