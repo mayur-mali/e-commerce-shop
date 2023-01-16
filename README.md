@@ -6,7 +6,7 @@ In this app we fetch product show on frontend...
 
 link to demo
 
-https://react-albums-app.vercel.app/
+https://e-commerce-shop-kappa.vercel.app/
 
 ## Features
 
